@@ -1,0 +1,7 @@
+{
+  "name": "aekonezt",
+  "description": "Interactive digital photobox and photobooth kiosk with live camera, countdown, custom frames, filter effects, and high-res strip export.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
