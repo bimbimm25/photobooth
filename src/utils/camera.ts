@@ -21,14 +21,15 @@ export class CameraManager {
     }
 
     try {
+      // Primary high-quality user-facing constraints
       const constraints: MediaStreamConstraints = {
         audio: false,
         video: deviceId
           ? { deviceId: { exact: deviceId } }
           : {
               facingMode: 'user',
-              width: { ideal: 1920, min: 1280 },
-              height: { ideal: 1080, min: 720 }
+              width: { ideal: 1920 },
+              height: { ideal: 1080 }
             }
       };
 
@@ -36,10 +37,35 @@ export class CameraManager {
       this.activeStream = stream;
       this.isDemoMode = false;
       return { stream, isDemo: false };
-    } catch (err: unknown) {
-      console.warn('Real camera error:', err);
-      // Re-throw if caller wants to handle permission denial explicitly
-      throw err;
+    } catch (primaryErr: unknown) {
+      console.warn('Initial camera constraints failed, attempting fallback constraints:', primaryErr);
+      
+      // Fallback for mobile devices or webcams that reject exact resolution constraints
+      try {
+        const fallbackConstraints: MediaStreamConstraints = {
+          audio: false,
+          video: deviceId ? { deviceId: { exact: deviceId } } : { facingMode: 'user' }
+        };
+        const stream = await navigator.mediaDevices.getUserMedia(fallbackConstraints);
+        this.activeStream = stream;
+        this.isDemoMode = false;
+        return { stream, isDemo: false };
+      } catch (fallbackErr: unknown) {
+        // Broadest fallback: any available video input
+        try {
+          const minimalConstraints: MediaStreamConstraints = {
+            audio: false,
+            video: true
+          };
+          const stream = await navigator.mediaDevices.getUserMedia(minimalConstraints);
+          this.activeStream = stream;
+          this.isDemoMode = false;
+          return { stream, isDemo: false };
+        } catch (err: unknown) {
+          console.warn('All camera constraints failed:', err);
+          throw err;
+        }
+      }
     }
   }
 

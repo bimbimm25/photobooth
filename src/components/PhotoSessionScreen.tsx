@@ -197,43 +197,43 @@ export const PhotoSessionScreen: React.FC<PhotoSessionScreenProps> = ({
       )}
 
       {/* 2. Top Kiosk Navigation & Status Bar */}
-      <header className="relative z-30 w-full p-4 sm:p-6 flex items-center justify-between bg-gradient-to-b from-black/80 via-black/40 to-transparent">
+      <header className="relative z-30 w-full p-3 sm:p-5 md:p-6 flex items-center justify-between gap-2 bg-gradient-to-b from-black/80 via-black/40 to-transparent">
         
         {/* Brand & Exit */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <button
             onClick={() => {
               soundFX.playButtonClick();
               onCancelSession();
             }}
-            className="p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white/80 hover:text-white transition-colors cursor-pointer"
+            className="p-2 sm:p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white/80 hover:text-white transition-colors cursor-pointer"
             title="Cancel Session (ESC)"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
           <div>
-            <h1 className="font-display font-black text-base sm:text-lg tracking-wider text-white">
+            <h1 className="font-display font-black text-sm sm:text-base md:text-lg tracking-wider text-white">
               AEKONEZT
             </h1>
-            <span className="text-[10px] tracking-widest text-[#FAD2E1] block uppercase">
+            <span className="text-[9px] sm:text-[10px] tracking-widest text-[#FAD2E1] block uppercase truncate max-w-[90px] sm:max-w-none">
               {template.name}
             </span>
           </div>
         </div>
 
         {/* Progress Counter Pill: PHOTO 1 OF 4 */}
-        <div className="px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/15 flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#E05370] animate-pulse" />
-          <span className="font-display font-extrabold text-sm sm:text-base tracking-widest text-white">
+        <div className="px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/15 flex items-center gap-1.5 sm:gap-2">
+          <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#E05370] animate-pulse" />
+          <span className="font-display font-extrabold text-xs sm:text-sm md:text-base tracking-widest text-white whitespace-nowrap">
             PHOTO {currentPhotoIndex + 1} OF {config.photoCount}
           </span>
         </div>
 
         {/* Camera Tools (Mirror toggle, Pose guide) */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           <button
             onClick={() => setIsMirror(!isMirror)}
-            className={`p-2.5 rounded-xl border transition-colors ${
+            className={`p-2 sm:p-2.5 rounded-xl border transition-colors ${
               isMirror ? 'bg-white/20 border-white/30 text-white' : 'bg-white/5 border-white/10 text-white/50'
             }`}
             title="Toggle Selfie Mirror"
@@ -243,7 +243,7 @@ export const PhotoSessionScreen: React.FC<PhotoSessionScreenProps> = ({
 
           <button
             onClick={() => setShowPoseGuide(!showPoseGuide)}
-            className={`p-2.5 rounded-xl border transition-colors ${
+            className={`p-2 sm:p-2.5 rounded-xl border transition-colors ${
               showPoseGuide ? 'bg-white/20 border-white/30 text-[#FAD2E1]' : 'bg-white/5 border-white/10 text-white/50'
             }`}
             title="Toggle Pose Alignment Guide"
@@ -294,15 +294,15 @@ export const PhotoSessionScreen: React.FC<PhotoSessionScreenProps> = ({
 
         {/* Retake Check Overlay (Quick Inspection after each snap) */}
         {sessionPhase === 'RETAKE_CHECK' && lastCapturedPhoto && (
-          <div className="absolute inset-0 z-40 bg-black/75 backdrop-blur-sm flex flex-col items-center justify-center p-6 animate-fade-in">
-            <div className="w-full max-w-sm sm:max-w-md bg-[#1C1A18] rounded-3xl p-4 sm:p-6 border border-white/15 shadow-2xl space-y-4 text-center">
+          <div className="absolute inset-0 z-40 bg-black/80 backdrop-blur-sm flex flex-col items-center justify-center p-3 sm:p-6 animate-fade-in overflow-y-auto">
+            <div className="w-full max-w-xs sm:max-w-sm md:max-w-md bg-[#1C1A18] rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-white/15 shadow-2xl space-y-3 sm:space-y-4 text-center my-auto">
               <div className="flex items-center justify-between text-xs text-white/60 pb-1">
                 <span>PHOTO {currentPhotoIndex + 1} CAPTURED</span>
                 <span className="text-[#FAD2E1] font-bold">LOOKS GREAT!</span>
               </div>
 
               {/* Photo Preview Thumbnail */}
-              <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden bg-black border border-white/10 shadow-inner">
+              <div className="w-full aspect-[4/3] max-h-[42vh] rounded-xl sm:rounded-2xl overflow-hidden bg-black border border-white/10 shadow-inner flex items-center justify-center">
                 <img
                   src={lastCapturedPhoto.dataUrl}
                   alt="Last capture"
@@ -312,11 +312,11 @@ export const PhotoSessionScreen: React.FC<PhotoSessionScreenProps> = ({
               </div>
 
               {/* Action Buttons: USE PHOTO or RETAKE */}
-              <div className="grid grid-cols-2 gap-3 pt-2">
+              <div className="grid grid-cols-2 gap-2 sm:gap-3 pt-1 sm:pt-2">
                 <button
                   id="retake-current-btn"
                   onClick={handleRetakeCurrent}
-                  className="py-3.5 px-4 rounded-xl bg-white/10 hover:bg-white/20 text-white font-display font-bold text-sm tracking-wider flex items-center justify-center gap-2 border border-white/15 cursor-pointer transition-colors"
+                  className="py-3 sm:py-3.5 px-3 sm:px-4 rounded-xl bg-white/10 hover:bg-white/20 text-white font-display font-bold text-xs sm:text-sm tracking-wider flex items-center justify-center gap-1.5 sm:gap-2 border border-white/15 cursor-pointer transition-colors"
                 >
                   <RefreshCw className="w-4 h-4" />
                   <span>RETAKE (R)</span>
@@ -325,7 +325,7 @@ export const PhotoSessionScreen: React.FC<PhotoSessionScreenProps> = ({
                 <button
                   id="use-photo-btn"
                   onClick={handleUsePhoto}
-                  className="py-3.5 px-4 rounded-xl bg-[#FAF7F2] hover:bg-white text-[#121110] font-display font-extrabold text-sm tracking-wider flex items-center justify-center gap-2 shadow-lg cursor-pointer hover:scale-[1.02] active:scale-[0.98] transition-all"
+                  className="py-3 sm:py-3.5 px-3 sm:px-4 rounded-xl bg-[#FAF7F2] hover:bg-white text-[#121110] font-display font-extrabold text-xs sm:text-sm tracking-wider flex items-center justify-center gap-1.5 sm:gap-2 shadow-lg cursor-pointer hover:scale-[1.02] active:scale-[0.98] transition-all"
                 >
                   <Check className="w-4 h-4 stroke-[3]" />
                   <span>USE PHOTO</span>
@@ -337,10 +337,10 @@ export const PhotoSessionScreen: React.FC<PhotoSessionScreenProps> = ({
       </div>
 
       {/* 4. Bottom Controls: Filter Pills & Big Capture Button */}
-      <footer className="relative z-30 w-full p-4 sm:p-6 flex flex-col items-center gap-4 bg-gradient-to-t from-black/90 via-black/50 to-transparent">
+      <footer className="relative z-30 w-full p-3 sm:p-5 md:p-6 flex flex-col items-center gap-3 sm:gap-4 bg-gradient-to-t from-black/95 via-black/60 to-transparent">
         
         {/* Live Filter Selector Bar */}
-        <div className="flex items-center gap-1.5 p-1.5 rounded-2xl bg-black/60 border border-white/15 backdrop-blur-md overflow-x-auto max-w-full">
+        <div className="flex items-center gap-1 sm:gap-1.5 p-1 sm:p-1.5 rounded-2xl bg-black/60 border border-white/15 backdrop-blur-md overflow-x-auto max-w-full no-scrollbar">
           {PHOTO_FILTERS.map(f => (
             <button
               key={f.id}
@@ -348,7 +348,7 @@ export const PhotoSessionScreen: React.FC<PhotoSessionScreenProps> = ({
                 soundFX.playButtonClick();
                 onUpdateFilter(f.id);
               }}
-              className={`px-3 sm:px-4 py-1.5 rounded-xl text-xs font-bold tracking-wider transition-all whitespace-nowrap ${
+              className={`px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-xl text-[11px] sm:text-xs font-bold tracking-wider transition-all whitespace-nowrap flex-shrink-0 ${
                 config.filter === f.id
                   ? 'bg-white text-[#121110] shadow-md scale-105'
                   : 'text-white/70 hover:text-white hover:bg-white/10'
@@ -361,20 +361,20 @@ export const PhotoSessionScreen: React.FC<PhotoSessionScreenProps> = ({
 
         {/* Capture Shutter Button */}
         {sessionPhase === 'READY' && (
-          <div className="flex flex-col items-center gap-2">
+          <div className="flex flex-col items-center gap-1.5 sm:gap-2">
             <button
               id="capture-shutter-btn"
               onClick={startCountdown}
-              className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white flex items-center justify-center shadow-2xl hover:scale-105 active:scale-95 transition-all cursor-pointer group"
+              className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full bg-white flex items-center justify-center shadow-2xl hover:scale-105 active:scale-95 transition-all cursor-pointer group"
             >
               {/* Outer pulsing ring */}
               <div className="absolute inset-0 rounded-full border-4 border-white/40 animate-ring-pulse pointer-events-none" />
               {/* Inner red ring button */}
-              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-tr from-[#FAF7F2] to-[#FFFFFF] border-4 border-[#121110] flex items-center justify-center group-hover:bg-[#FAD2E1] transition-colors">
-                <Camera className="w-7 h-7 sm:w-8 sm:h-8 text-[#121110]" />
+              <div className="w-13 h-13 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-tr from-[#FAF7F2] to-[#FFFFFF] border-4 border-[#121110] flex items-center justify-center group-hover:bg-[#FAD2E1] transition-colors">
+                <Camera className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-[#121110]" />
               </div>
             </button>
-            <span className="text-[11px] font-bold tracking-widest uppercase text-white/60">
+            <span className="text-[10px] sm:text-[11px] font-bold tracking-widest uppercase text-white/60">
               Press [SPACE] or Tap to Snap
             </span>
           </div>

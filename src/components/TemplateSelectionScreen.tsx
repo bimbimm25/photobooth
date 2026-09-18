@@ -24,24 +24,24 @@ export const TemplateSelectionScreen: React.FC<TemplateSelectionScreenProps> = (
   const selectedTemplate = PHOTOBOX_TEMPLATES.find(t => t.id === selectedTemplateId) || PHOTOBOX_TEMPLATES[0];
 
   return (
-    <div className="min-h-screen w-full flex flex-col justify-between items-center p-4 sm:p-8 bg-[#121110] text-[#FAF7F2] select-none">
+    <div className="min-h-screen w-full flex flex-col justify-between items-center p-3 sm:p-6 md:p-8 bg-[#121110] text-[#FAF7F2] select-none overflow-y-auto">
       
       {/* Top Bar */}
-      <header className="w-full max-w-6xl flex justify-between items-center py-2">
+      <header className="w-full max-w-6xl flex justify-between items-center py-2 gap-2">
         <button
           onClick={() => {
             soundFX.playButtonClick();
             onBack();
           }}
-          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-white/70 hover:text-white transition-colors"
+          className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-white/70 hover:text-white transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span className="text-sm font-medium">Back</span>
+          <span className="text-xs sm:text-sm font-medium">Back</span>
         </button>
 
         <div className="text-center">
-          <span className="font-display font-bold text-xs tracking-widest text-[#FAD2E1] uppercase">STEP 2 OF 5</span>
-          <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
+          <span className="font-display font-bold text-[10px] sm:text-xs tracking-widest text-[#FAD2E1] uppercase">STEP 2 OF 5</span>
+          <h2 className="font-display text-lg sm:text-2xl md:text-3xl font-extrabold tracking-tight text-white">
             CHOOSE YOUR FRAME
           </h2>
         </div>
@@ -52,31 +52,31 @@ export const TemplateSelectionScreen: React.FC<TemplateSelectionScreenProps> = (
             soundFX.playButtonClick();
             onContinue();
           }}
-          className="hidden sm:flex items-center gap-2 px-6 py-2.5 rounded-xl bg-white text-[#121110] font-display font-bold text-sm tracking-wide shadow-lg hover:scale-105 active:scale-95 transition-all cursor-pointer"
+          className="flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-6 py-2 sm:py-2.5 rounded-xl bg-white text-[#121110] font-display font-bold text-xs sm:text-sm tracking-wide shadow-lg hover:scale-105 active:scale-95 transition-all cursor-pointer"
         >
           <span>CONTINUE</span>
-          <ArrowRight className="w-4 h-4" />
+          <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
         </button>
       </header>
 
       {/* Main Grid of Photostrip Frames */}
-      <main className="w-full max-w-6xl my-auto py-6">
+      <main className="w-full max-w-6xl my-auto py-4 sm:py-6">
         
         {/* Custom Color Palette Bar if custom color template is chosen */}
         {selectedTemplate.id === 'customColor' && (
-          <div className="mb-6 p-4 rounded-2xl bg-white/5 border border-white/10 flex flex-wrap items-center justify-between gap-4 max-w-xl mx-auto animate-fade-in">
-            <div className="flex items-center gap-2 text-sm text-white/80">
+          <div className="mb-4 sm:mb-6 p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/10 flex flex-wrap items-center justify-between gap-3 sm:gap-4 max-w-xl mx-auto animate-fade-in">
+            <div className="flex items-center gap-2 text-xs sm:text-sm text-white/80">
               <Palette className="w-4 h-4 text-[#FAD2E1]" />
               <span>Choose Accent Hue:</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 overflow-x-auto pb-1 max-w-full">
               {COLOR_PALETTES.map(col => (
                 <button
                   key={col.name}
                   onClick={() => onChangeCustomColor(col.bg)}
                   style={{ backgroundColor: col.bg }}
                   title={col.name}
-                  className={`w-8 h-8 rounded-full border-2 transition-transform ${
+                  className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 transition-transform flex-shrink-0 ${
                     customColor === col.bg ? 'scale-125 border-white shadow-lg' : 'border-black/30 hover:scale-110'
                   }`}
                 />
@@ -86,7 +86,7 @@ export const TemplateSelectionScreen: React.FC<TemplateSelectionScreenProps> = (
         )}
 
         {/* Templates Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
           {PHOTOBOX_TEMPLATES.map(template => {
             const isSelected = template.id === selectedTemplateId;
             const effectiveBg = template.id === 'customColor' && customColor ? customColor : template.background;
@@ -188,7 +188,7 @@ export const TemplateSelectionScreen: React.FC<TemplateSelectionScreenProps> = (
       </main>
 
       {/* Bottom Action */}
-      <footer className="w-full max-w-6xl flex justify-between items-center py-4 border-t border-white/10">
+      <footer className="w-full max-w-6xl flex flex-col sm:flex-row justify-between items-center gap-3 py-3 sm:py-4 border-t border-white/10">
         <div className="flex items-center gap-2 text-xs text-white/50">
           <Sparkles className="w-3.5 h-3.5 text-[#FAD2E1]" />
           <span>Selected: <strong className="text-white">{selectedTemplate.name}</strong></span>
@@ -200,10 +200,10 @@ export const TemplateSelectionScreen: React.FC<TemplateSelectionScreenProps> = (
             soundFX.playButtonClick();
             onContinue();
           }}
-          className="px-8 py-3.5 rounded-2xl bg-[#FAF7F2] hover:bg-white text-[#121110] font-display font-bold text-base tracking-wider shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2 cursor-pointer"
+          className="w-full sm:w-auto min-h-[48px] px-8 py-3.5 rounded-2xl bg-[#FAF7F2] hover:bg-white text-[#121110] font-display font-bold text-sm sm:text-base tracking-wider shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer"
         >
           <span>CONTINUE</span>
-          <ArrowRight className="w-5 h-5" />
+          <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
       </footer>
 

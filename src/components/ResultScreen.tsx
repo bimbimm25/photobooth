@@ -75,7 +75,7 @@ export const ResultScreen: React.FC<ResultScreenProps> = ({
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col justify-between items-center p-4 sm:p-8 bg-[#121110] text-[#FAF7F2] select-none">
+    <div className="min-h-screen w-full flex flex-col justify-between items-center p-3 sm:p-6 md:p-8 bg-[#121110] text-[#FAF7F2] select-none overflow-y-auto">
       
       {/* Printable Photostrip Element (Strictly isolated by @media print) */}
       <img
@@ -85,12 +85,12 @@ export const ResultScreen: React.FC<ResultScreenProps> = ({
       />
 
       {/* Screen Top Header (Hidden on Print) */}
-      <header className="no-print w-full max-w-5xl flex justify-between items-center py-2 z-10">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center border border-white/15">
-            <Sparkles className="w-4 h-4 text-[#FAD2E1]" />
+      <header className="no-print w-full max-w-5xl flex justify-between items-center py-2 z-10 gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-white/10 flex items-center justify-center border border-white/15">
+            <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#FAD2E1]" />
           </div>
-          <span className="font-display font-black text-sm tracking-wider text-white">AEKONEZT PHOTOBOOTH</span>
+          <span className="font-display font-black text-xs sm:text-sm tracking-wider text-white">AEKONEZT PHOTOBOOTH</span>
         </div>
 
         <button
@@ -99,49 +99,49 @@ export const ResultScreen: React.FC<ResultScreenProps> = ({
             soundFX.playButtonClick();
             onStartAgain();
           }}
-          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-white/70 hover:text-white transition-colors cursor-pointer"
+          className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-white/70 hover:text-white transition-colors cursor-pointer"
         >
-          <RotateCcw className="w-4 h-4" />
-          <span className="text-sm font-medium">Start Again</span>
+          <RotateCcw className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+          <span className="text-xs sm:text-sm font-medium">Start Again</span>
         </button>
       </header>
 
       {/* Main Strip Showcase (Hidden on Print) */}
-      <main className="no-print w-full max-w-5xl my-auto py-6 flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-14 z-10">
+      <main className="no-print w-full max-w-5xl my-auto py-4 sm:py-6 flex flex-col lg:flex-row items-center justify-center gap-6 sm:gap-8 lg:gap-14 z-10">
         
         {/* Photostrip High-Res Display Frame */}
-        <div className="relative group max-h-[72vh] flex items-center justify-center">
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/80 border-4 border-white/10 max-h-[72vh] transition-transform duration-300 group-hover:scale-[1.01]">
+        <div className="relative group max-h-[55vh] sm:max-h-[65vh] lg:max-h-[72vh] flex items-center justify-center">
+          <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl shadow-black/80 border-2 sm:border-4 border-white/10 max-h-[55vh] sm:max-h-[65vh] lg:max-h-[72vh] transition-transform duration-300 group-hover:scale-[1.01]">
             <img
               src={finalImageUrl}
               alt="Final Photostrip"
-              className="max-h-[72vh] w-auto object-contain rounded-xl"
+              className="max-h-[55vh] sm:max-h-[65vh] lg:max-h-[72vh] w-auto object-contain rounded-lg sm:rounded-xl"
             />
           </div>
         </div>
 
         {/* Action Panel */}
-        <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-6 max-w-md">
-          <div className="space-y-2">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-xs font-bold text-[#FAD2E1] tracking-wider uppercase">
-              <Check className="w-3.5 h-3.5 text-[#4ADE80]" />
+        <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-4 sm:space-y-6 max-w-md w-full">
+          <div className="space-y-1.5 sm:space-y-2">
+            <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-white/10 text-[10px] sm:text-xs font-bold text-[#FAD2E1] tracking-wider uppercase">
+              <Check className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-[#4ADE80]" />
               HIGH RESOLUTION EXPORT READY
             </div>
-            <h1 className="font-display text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
+            <h1 className="font-display text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
               YOUR MEMORY IS READY.
             </h1>
-            <p className="text-white/60 text-sm sm:text-base leading-relaxed">
+            <p className="text-white/60 text-xs sm:text-sm md:text-base leading-relaxed">
               Take home your digital keepsake or print a physical photostrip immediately.
             </p>
           </div>
 
           {/* Core Action Buttons: Download & Print */}
-          <div className="w-full space-y-3 pt-2">
+          <div className="w-full space-y-2.5 sm:space-y-3 pt-1 sm:pt-2">
             {/* Download Button */}
             <button
               id="download-photo-btn"
               onClick={handleDownload}
-              className="w-full py-4 px-6 rounded-2xl bg-[#FAF7F2] hover:bg-white text-[#121110] font-display font-extrabold text-lg tracking-wider shadow-2xl hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3 cursor-pointer"
+              className="w-full min-h-[48px] py-3.5 sm:py-4 px-6 rounded-2xl bg-[#FAF7F2] hover:bg-white text-[#121110] font-display font-extrabold text-base sm:text-lg tracking-wider shadow-2xl hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 sm:gap-3 cursor-pointer"
             >
               <Download className="w-5 h-5 text-[#121110]" />
               <span>DOWNLOAD PHOTO</span>
@@ -151,21 +151,21 @@ export const ResultScreen: React.FC<ResultScreenProps> = ({
             <button
               id="print-photo-btn"
               onClick={handlePrint}
-              className="w-full py-4 px-6 rounded-2xl bg-white/10 hover:bg-white/15 text-white font-display font-bold text-lg tracking-wider border border-white/20 flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+              className="w-full min-h-[48px] py-3.5 sm:py-4 px-6 rounded-2xl bg-white/10 hover:bg-white/15 text-white font-display font-bold text-base sm:text-lg tracking-wider border border-white/20 flex items-center justify-center gap-2 sm:gap-3 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
             >
               <Printer className="w-5 h-5 text-white" />
               <span>PRINT PHOTO</span>
             </button>
 
             {/* Scan / QR Code & Share */}
-            <div className="grid grid-cols-2 gap-3 pt-1">
+            <div className="grid grid-cols-2 gap-2 sm:gap-3 pt-1">
               <button
                 id="scan-qr-btn"
                 onClick={() => {
                   soundFX.playButtonClick();
                   setShowQRModal(true);
                 }}
-                className="py-3 px-4 rounded-xl bg-white/5 hover:bg-white/10 text-white/80 hover:text-white text-xs font-bold tracking-wider flex items-center justify-center gap-2 border border-white/10 transition-colors cursor-pointer"
+                className="py-2.5 sm:py-3 px-3 sm:px-4 rounded-xl bg-white/5 hover:bg-white/10 text-white/80 hover:text-white text-xs font-bold tracking-wider flex items-center justify-center gap-1.5 sm:gap-2 border border-white/10 transition-colors cursor-pointer"
               >
                 <QrCode className="w-4 h-4 text-[#FAD2E1]" />
                 <span>SCAN QR CODE</span>
@@ -174,7 +174,7 @@ export const ResultScreen: React.FC<ResultScreenProps> = ({
               <button
                 id="share-btn"
                 onClick={handleShare}
-                className="py-3 px-4 rounded-xl bg-white/5 hover:bg-white/10 text-white/80 hover:text-white text-xs font-bold tracking-wider flex items-center justify-center gap-2 border border-white/10 transition-colors cursor-pointer"
+                className="py-2.5 sm:py-3 px-3 sm:px-4 rounded-xl bg-white/5 hover:bg-white/10 text-white/80 hover:text-white text-xs font-bold tracking-wider flex items-center justify-center gap-1.5 sm:gap-2 border border-white/10 transition-colors cursor-pointer"
               >
                 <Share2 className="w-4 h-4 text-[#FAD2E1]" />
                 <span>SHARE STRIP</span>
@@ -183,14 +183,14 @@ export const ResultScreen: React.FC<ResultScreenProps> = ({
           </div>
 
           {/* Reset / Start Again */}
-          <div className="pt-2 w-full">
+          <div className="pt-1 sm:pt-2 w-full">
             <button
               id="start-again-bottom-btn"
               onClick={() => {
                 soundFX.playButtonClick();
                 onStartAgain();
               }}
-              className="w-full py-3 text-xs tracking-widest text-white/50 hover:text-white uppercase font-bold flex items-center justify-center gap-2 transition-colors cursor-pointer"
+              className="w-full py-2 sm:py-3 text-[11px] sm:text-xs tracking-widest text-white/50 hover:text-white uppercase font-bold flex items-center justify-center gap-2 transition-colors cursor-pointer"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span>START AGAIN FOR NEXT GUEST</span>
@@ -201,7 +201,7 @@ export const ResultScreen: React.FC<ResultScreenProps> = ({
       </main>
 
       {/* Screen Bottom Footer (Hidden on Print) */}
-      <footer className="no-print w-full max-w-5xl flex justify-between items-center text-xs text-white/30 py-2 border-t border-white/5">
+      <footer className="no-print w-full max-w-5xl flex flex-col sm:flex-row justify-between items-center text-[10px] sm:text-xs text-white/30 gap-1 py-2 border-t border-white/5 text-center sm:text-left">
         <span>aekonezt Digital Photobox • Output: 1200 × 2400px</span>
         <span>Date: {eventDate}</span>
       </footer>

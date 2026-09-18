@@ -19,21 +19,21 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
   };
 
   return (
-    <div className="relative min-h-screen w-full flex flex-col justify-between items-center p-6 md:p-10 bg-[#121110] text-[#FAF7F2] overflow-hidden select-none">
+    <div className="relative min-h-screen w-full flex flex-col justify-between items-center p-4 sm:p-6 md:p-10 bg-[#121110] text-[#FAF7F2] overflow-x-hidden overflow-y-auto select-none">
       
       {/* Background ambient lighting */}
-      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#E05370]/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-[#9381FF]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 -left-20 w-72 sm:w-96 h-72 sm:h-96 bg-[#E05370]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-20 w-72 sm:w-96 h-72 sm:h-96 bg-[#9381FF]/10 rounded-full blur-3xl pointer-events-none" />
 
       {/* Top Bar */}
-      <header className="w-full max-w-6xl flex justify-between items-center z-10">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center border border-white/15 backdrop-blur-md">
-            <Camera className="w-5 h-5 text-[#FAD2E1]" />
+      <header className="w-full max-w-6xl flex justify-between items-center z-10 py-1">
+        <div className="flex items-center gap-2.5 sm:gap-3">
+          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white/10 flex items-center justify-center border border-white/15 backdrop-blur-md">
+            <Camera className="w-4 h-4 sm:w-5 sm:h-5 text-[#FAD2E1]" />
           </div>
           <div>
-            <span className="font-display font-bold text-lg tracking-wider text-white">AEKONEZT</span>
-            <span className="text-xs text-white/50 block tracking-widest uppercase">Digital Photobox</span>
+            <span className="font-display font-bold text-base sm:text-lg tracking-wider text-white">AEKONEZT</span>
+            <span className="text-[10px] sm:text-xs text-white/50 block tracking-widest uppercase">Digital Photobox</span>
           </div>
         </div>
 
@@ -43,58 +43,58 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
               id="welcome-fullscreen-btn"
               onClick={onToggleFullscreen}
               aria-label="Toggle Fullscreen"
-              className="p-3 rounded-xl bg-white/5 hover:bg-white/10 text-white/80 hover:text-white border border-white/10 transition-colors"
+              className="p-2 sm:p-3 rounded-xl bg-white/5 hover:bg-white/10 text-white/80 hover:text-white border border-white/10 transition-colors"
             >
-              <Maximize className="w-5 h-5" />
+              <Maximize className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
           )}
         </div>
       </header>
 
       {/* Main Content & Visuals */}
-      <main className="w-full max-w-5xl flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-16 my-auto py-8 z-10">
+      <main className="w-full max-w-5xl flex flex-col lg:flex-row items-center justify-center gap-8 sm:gap-12 lg:gap-16 my-auto py-6 sm:py-8 z-10">
         
         {/* Left: Text & Action */}
-        <div className="flex-1 text-center lg:text-left space-y-6 max-w-xl">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-[#FAD2E1] tracking-wide">
+        <div className="flex-1 text-center lg:text-left space-y-4 sm:space-y-6 max-w-xl">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-[11px] sm:text-xs font-medium text-[#FAD2E1] tracking-wide">
             <Sparkles className="w-3.5 h-3.5 text-[#FAD2E1]" />
             <span>INSTANT PHOTO EXPERIENCE</span>
           </div>
 
-          <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.08]">
+          <h1 className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.1]">
             LET'S MAKE A <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDE2E4] via-[#FAD2E1] to-[#E2ECE9]">MEMORY.</span>
           </h1>
 
-          <p className="text-lg sm:text-xl text-white/70 font-normal leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-white/70 font-normal leading-relaxed max-w-md mx-auto lg:mx-0">
             Strike a pose. We'll handle the rest.
           </p>
 
-          <div className="pt-4 space-y-3">
+          <div className="pt-2 sm:pt-4 space-y-2.5 sm:space-y-3">
             <button
               id="start-photo-btn"
               onClick={handleStart}
-              className="w-full sm:w-auto px-10 py-5 rounded-2xl bg-gradient-to-r from-[#FAF7F2] to-[#EAE5DF] text-[#121110] font-display font-bold text-xl tracking-wider shadow-2xl hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3 cursor-pointer group"
+              className="w-full sm:w-auto min-h-[52px] px-8 sm:px-10 py-4 sm:py-5 rounded-2xl bg-gradient-to-r from-[#FAF7F2] to-[#EAE5DF] text-[#121110] font-display font-bold text-lg sm:text-xl tracking-wider shadow-2xl hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3 cursor-pointer group mx-auto lg:mx-0"
             >
-              <Camera className="w-6 h-6 text-[#121110] group-hover:rotate-12 transition-transform" />
+              <Camera className="w-5 h-5 sm:w-6 sm:h-6 text-[#121110] group-hover:rotate-12 transition-transform" />
               <span>START PHOTO</span>
-              <ArrowRight className="w-5 h-5 text-[#121110] group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#121110] group-hover:translate-x-1 transition-transform" />
             </button>
 
-            <p className="text-xs text-white/40 tracking-wider">
-              Make sure your camera is ready.
+            <p className="text-[11px] sm:text-xs text-white/40 tracking-wider">
+              Touch to start or press Spacebar
             </p>
           </div>
         </div>
 
         {/* Right: Sample Photostrip Showpiece */}
-        <div className="relative flex justify-center items-center">
+        <div className="relative flex justify-center items-center scale-90 sm:scale-100 transition-transform">
           {/* Photostrip Card 1 */}
-          <div className="w-56 sm:w-64 bg-[#F8F4EF] text-[#1A1817] p-3.5 rounded-2xl shadow-2xl transform -rotate-3 hover:rotate-0 transition-transform duration-300 border border-white/20">
-            <div className="text-center py-1.5">
-              <span className="font-display text-[10px] tracking-widest font-bold text-[#8C6239] uppercase">A DAY TO REMEMBER</span>
+          <div className="w-48 sm:w-56 md:w-64 bg-[#F8F4EF] text-[#1A1817] p-3 sm:p-3.5 rounded-2xl shadow-2xl transform -rotate-3 hover:rotate-0 transition-transform duration-300 border border-white/20">
+            <div className="text-center py-1 sm:py-1.5">
+              <span className="font-display text-[9px] sm:text-[10px] tracking-widest font-bold text-[#8C6239] uppercase">A DAY TO REMEMBER</span>
             </div>
-            <div className="space-y-2 mt-1">
-              <div className="w-full h-24 sm:h-28 rounded-lg bg-[#E8E1D5] overflow-hidden relative">
+            <div className="space-y-1.5 sm:space-y-2 mt-1">
+              <div className="w-full h-20 sm:h-24 md:h-28 rounded-lg bg-[#E8E1D5] overflow-hidden relative">
                 <img 
                   src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80" 
                   alt="Sample pose 1"
@@ -102,7 +102,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
                   referrerPolicy="no-referrer"
                 />
               </div>
-              <div className="w-full h-24 sm:h-28 rounded-lg bg-[#E8E1D5] overflow-hidden relative">
+              <div className="w-full h-20 sm:h-24 md:h-28 rounded-lg bg-[#E8E1D5] overflow-hidden relative">
                 <img 
                   src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop&q=80" 
                   alt="Sample pose 2"
@@ -110,7 +110,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
                   referrerPolicy="no-referrer"
                 />
               </div>
-              <div className="w-full h-24 sm:h-28 rounded-lg bg-[#E8E1D5] overflow-hidden relative">
+              <div className="w-full h-20 sm:h-24 md:h-28 rounded-lg bg-[#E8E1D5] overflow-hidden relative">
                 <img 
                   src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&auto=format&fit=crop&q=80" 
                   alt="Sample pose 3"
@@ -119,14 +119,14 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
                 />
               </div>
             </div>
-            <div className="text-center pt-3 pb-1 border-t border-black/10 mt-3">
-              <span className="font-mono text-[10px] tracking-wider block font-bold">18.09.2026</span>
-              <span className="font-sans text-[8px] tracking-widest uppercase text-black/50">AEKONEZT • STUDIO</span>
+            <div className="text-center pt-2 sm:pt-3 pb-1 border-t border-black/10 mt-2 sm:mt-3">
+              <span className="font-mono text-[9px] sm:text-[10px] tracking-wider block font-bold">18.09.2026</span>
+              <span className="font-sans text-[7px] sm:text-[8px] tracking-widest uppercase text-black/50">AEKONEZT • STUDIO</span>
             </div>
           </div>
 
           {/* Secondary Pink Photostrip peek */}
-          <div className="hidden sm:block absolute -right-8 -bottom-6 w-52 bg-[#FDE4EA] text-[#87254C] p-3 rounded-2xl shadow-xl transform rotate-6 -z-10 border border-white/20 opacity-80">
+          <div className="hidden md:block absolute -right-8 -bottom-6 w-48 md:w-52 bg-[#FDE4EA] text-[#87254C] p-3 rounded-2xl shadow-xl transform rotate-6 -z-10 border border-white/20 opacity-80">
             <div className="text-center py-1">
               <span className="font-display text-[9px] font-bold tracking-wider">GOOD VIBES ONLY ♡</span>
             </div>
@@ -154,7 +154,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
       </main>
 
       {/* Footer Instructions */}
-      <footer className="w-full max-w-6xl flex justify-between items-center text-white/40 text-xs z-10 border-t border-white/5 pt-4">
+      <footer className="w-full max-w-6xl flex flex-col sm:flex-row justify-between items-center gap-1 sm:gap-2 text-white/40 text-[11px] sm:text-xs z-10 border-t border-white/5 pt-3 sm:pt-4 text-center sm:text-left">
         <span>Touch or click to operate kiosk</span>
         <span>Tap [SPACE] or Click to Start</span>
       </footer>
